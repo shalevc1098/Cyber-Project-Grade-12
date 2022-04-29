@@ -1,0 +1,12 @@
+{
+    "server": {
+        "ip": "localhost",
+        "port": 8080
+    },
+    "db": {
+        "host": "localhost",
+        "user": "root",
+        "password": "hello123",
+        "database": "MyFiles"
+    }
+}

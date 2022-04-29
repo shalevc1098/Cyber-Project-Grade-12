@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "strict": true,
+        "outDir": "./built",
+        "allowJs": true,
+        "target": "ES2020",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    },
+    "include": ["Types/**/*"],
+    "ts-node": {
+        "transpileOnly": true
+    }
+}

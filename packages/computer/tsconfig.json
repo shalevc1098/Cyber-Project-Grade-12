@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "importHelpers": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "strictPropertyInitialization": false,
+        "jsx": "preserve",
+        "noImplicitAny": false,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "target": "esnext"
+    },
+    "include": [
+        "src"
+    ]
+}

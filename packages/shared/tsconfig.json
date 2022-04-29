@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "importHelpers": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "strictPropertyInitialization": false,
+        "jsx": "react-jsx",
+        "noImplicitAny": false,
+        "target": "es6",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+    }
+}
