@@ -99,17 +99,16 @@ class RoomList extends Component<{}, any> {
 
     // Renders the page content
     render() {
-        var index = 0;
         return (
             <>
                 {this.state.noRooms != null ? !this.state.noRooms ? (
                     <>
                         <SwipeListView
+                            style={{ marginTop: 8 }}
                             data={this.state.roomList}
                             renderItem={(data: any) => (
-                                <Pressable onPress={() => this.onRoomPress(data.item.id)} mx={5} my={index == 0 ? 4 : 0}>
+                                <Pressable onPress={() => this.onRoomPress(data.item.id)} mx={5} my={2}>
                                     {({ isHovered, isFocused, isPressed }) => {
-                                        index++;
                                         return (
                                             <Box bg={isPressed ? "#000000" : isHovered ? "#101010" : "#151515"} p="5" rounded="8">
                                                 <HStack alignItems="flex-start">

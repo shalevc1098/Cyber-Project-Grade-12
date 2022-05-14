@@ -1,6 +1,6 @@
 {
     "server": {
-        "ip": "localhost",
+        "ip": "192.168.1.146",
         "port": 8080
     },
     "db": {

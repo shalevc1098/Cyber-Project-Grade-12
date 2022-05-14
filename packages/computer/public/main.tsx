@@ -17,6 +17,7 @@ function createWindow() {
         width: 1000,
         height: 800,
         backgroundColor: '#303030',
+        icon: path.resolve(__dirname, 'favicon.ico'),
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -29,7 +30,6 @@ function createWindow() {
 
     mainRemote.enable(win.webContents);
 
-    win.setIcon(path.resolve(__dirname, 'favicon.ico'));
     win.setMenuBarVisibility(true);
     win.setMinimumSize(500, 500);
 

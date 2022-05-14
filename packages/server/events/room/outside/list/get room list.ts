@@ -13,7 +13,7 @@ export default {
                 roomList.push(roomData);
             });
             if (!socket.rooms.has('room list')) socket.join('room list');
-            socket.emit('room list', roomList);
+            socket.emit('room list', roomList.reverse());
         } catch (error) {
             console.log(error);
         }

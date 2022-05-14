@@ -15,7 +15,7 @@ export default {
                 roomHost: socket.data.user.username,
                 roomName: roomName,
                 roomPassword: roomPassword,
-                roomCreationDate: new Date().toISOString(),
+                roomCreationDate: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
                 roomDescription: roomDescription,
                 maxUsers: parseInt(maxUsers),
                 hostId: socket.data.user.id,
