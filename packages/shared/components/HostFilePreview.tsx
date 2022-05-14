@@ -22,7 +22,8 @@ class HostFilePreview extends Component<any, any> {
                 borderRadius: 35,
                 minWidth: globalProps.platform == 'Android' ? 375 : 550,
                 minHeight: globalProps.platform == 'Android' ? 325 : 500,
-                alignItems: globalProps.platform == 'Computer' ? 'center' : undefined,
+                //alignItems: globalProps.platform == 'Computer' ? 'center' : undefined,
+                alignItems: 'center',
                 justifyContent: 'center'
             }
         }
@@ -43,7 +44,7 @@ class HostFilePreview extends Component<any, any> {
                 this.preview = <AudioPreview path={this.props.path} />
                 break;
             case 'image':
-                this.preview = <Image source={{ uri: `file:///${this.props.path}` }} style={{ position: 'absolute', width: globalProps.platform == 'Android' ? 325 : 500, height: globalProps.platform == 'Android' ? 325 : 500, resizeMode: 'contain' }} />
+                this.preview = <Image source={{ uri: `file:///${this.props.path}` }} style={{ position: 'absolute', width: globalProps.platform == 'Android' ? 275 : 450, height: globalProps.platform == 'Android' ? 275 : 450, resizeMode: 'contain' }} />
                 break;
         }
         return (

@@ -43,7 +43,7 @@ class ClientFilePreview extends Component<any, any> {
                 this.preview = <AudioPreview path={globalProps.platform == 'Android' ? this.props.filePreview : `data:${this.props.fileMimeType};base64,${this.props.filePreview}`} />
                 break;
             case 'image':
-                this.preview = <Image source={{ uri: `data:${this.props.fileMimeType};base64,${this.props.filePreview}` }} style={{ position: 'absolute', width: globalProps.platform == 'Android' ? 325 : 500, height: globalProps.platform == 'Android' ? 325 : 500, resizeMode: 'contain' }} />
+                this.preview = <Image source={{ uri: `data:${this.props.fileMimeType};base64,${this.props.filePreview}` }} style={{ position: 'absolute', width: globalProps.platform == 'Android' ? 275 : 450, height: globalProps.platform == 'Android' ? 275 : 450, resizeMode: 'contain' }} />
                 break;
         }
         return (
