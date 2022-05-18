@@ -5,7 +5,7 @@ If Git is not yet installed on your Windows, please install it before proceeding
 <br />
 There are more softwares which are required in order to be able to run the program, and you can find all of them in the Links section.
 <br />
-After you've done installing all the required softwares, follow the steps on the Git LFS web page about how to add the command line extension lfs to Git (Follow only the first step).g
+After you've done installing all the required softwares, follow the steps on the Git LFS web page about how to add the command line extension lfs to Git (Follow only the first step).
 
 # Links
 Git for Windows: https://git-scm.com/download/win
