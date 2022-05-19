@@ -247,7 +247,7 @@ class HostFiles extends Component<any, any> {
 
                 // Uses the function intended to each platform to write the file chunk into the write stream
                 if (globalProps.platform == 'Android') {
-                    streamData.stream.write(chunk);
+                    await streamData.stream.write(chunk);
                 } else if (globalProps.platform == 'Computer') {
                     const decoded = Buffer.from(chunk, 'base64');
                     streamData.stream.write(decoded);

@@ -201,7 +201,7 @@ class ClientFiles extends Component<any, any> {
 
                 // Uses the function intended to each platform to write the file chunk into the write stream
                 if (globalProps.platform == 'Android') {
-                    streamData.stream.write(chunk);
+                    await streamData.stream.write(chunk);
                 } else if (globalProps.platform == 'Computer') {
                     const decoded = Buffer.from(chunk, 'base64');
                     streamData.stream.write(decoded);
@@ -387,9 +387,11 @@ class ClientFiles extends Component<any, any> {
                             and I pause the read stream, the end event will not get emitted.
                             Doing the check below makes sure that the read stream gets paused only none of the conditions are true
                         */
-                        if (!readStream.readable || fileSize <= bufferSize) return;
+                       console.log(chunk);
+                        //if (!readStream.readable || fileSize <= bufferSize) return;
                         readStream.pause();
                     }
+
                     if (this.state.progress != 1) {
                         // Gets the file chunk size as bytes
                         const chunkSize = getChunkSize(chunk);
@@ -568,6 +570,9 @@ class ClientFiles extends Component<any, any> {
 
         // For Android, treat back button as go one folder back
         if (globalProps.platform == 'Android') BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+
+        // If the file list is empty, requests the available storages from the host
+        if (this.state.files.length == 0) socket.emit('get host storages');
     }
 
     // What to do when this component is unloaded
@@ -742,20 +747,57 @@ class ClientFiles extends Component<any, any> {
             this.saveDirectory = savePath;
         }
 
-        var duplicates;
+        var duplicates: Array<any> = [];
+        var checkDuplicates = false;
         var fileName = file.name;
+        var duplicateNumber = 0;
         const fileNameArray = file.name.split('.');
+        const targetFileExtension = fileNameArray.pop();
+        const targetFileName = fileNameArray.join('.');
+        const duplicateRegex = /(.*)( )?(\(([1-9]+)\))?/
         if (globalProps.platform == 'Android') {
             const files = await fs.readDir(this.saveDirectory);
-            duplicates = files.filter(x => x.name.includes(x.name.replace(`.${fileNameArray[fileNameArray.length - 1]}`, ''))).length;
+            checkDuplicates = files.find(x => x.name == file.name) != undefined;
+            if (checkDuplicates) {
+                files.forEach(x => {
+                    const splittedFileName = x.name.split('.');
+                    const fileExtension = splittedFileName.pop();
+                    const fileName = splittedFileName.join('.');
+                    const fileRegexDetails = duplicateRegex.exec(fileName);
+                    if (!fileRegexDetails) return;
+                    const includesDuplicate = fileRegexDetails[1] == targetFileName && fileExtension == targetFileExtension;
+                    if (includesDuplicate) duplicates.push(fileRegexDetails[fileRegexDetails.length - 1]);
+                });
+            }
         } else if (globalProps.platform == 'Computer') {
             const files = fs.readdirSync(this.saveDirectory);
-            duplicates = files.filter(x => x.includes(file.name.replace(`.${fileNameArray[fileNameArray.length - 1]}`, ''))).length;
+            checkDuplicates = files.find(x => x == file.name) != undefined;
+            if (checkDuplicates) {
+                files.forEach(x => {
+                    const splittedFileName = x.split('.');
+                    const fileExtension = splittedFileName.pop();
+                    const fileName = splittedFileName.join('.');
+                    const fileRegexDetails = duplicateRegex.exec(fileName);
+                    if (!fileRegexDetails) return;
+                    const includesDuplicate = fileRegexDetails[1] == targetFileName && fileExtension == targetFileExtension;
+                    if (includesDuplicate) duplicates.push(fileRegexDetails[fileRegexDetails.length - 1]);
+                });
+            }
         }
 
-        if (duplicates > 0) {
-            fileName = `${file.name.replace(`.${fileNameArray[fileNameArray.length - 1]}`, '')} (${duplicates}).${fileNameArray[fileNameArray.length - 1]}`;
+        if (duplicates.length > 0) {
+            duplicates.sort();
+            for (const number of duplicates) {
+                if (number - duplicateNumber == 1) duplicateNumber++;
+                else {
+                    duplicateNumber++;
+                    break;
+                }
+            }
+            if ((duplicateNumber == duplicates.length && duplicates[duplicates.length - 1] == duplicateNumber)) duplicateNumber++;
+            fileName = `${targetFileName} (${duplicateNumber}).${targetFileExtension}`;
         }
+
         socket.emit('download file from host', file.name, file.path, this.saveDirectory + '/' + fileName);
     }
 
@@ -959,7 +1001,7 @@ class ClientFiles extends Component<any, any> {
                         display: this.flatListViewRef?.state.batchSize == 0 ? 'none' : undefined,
                         margin: 25,
                         position: 'absolute',
-                        bottom: 0,
+                        top: 0,
                         right: 0,
                         borderTopLeftRadius: 100,
                         borderBottomLeftRadius: 100,

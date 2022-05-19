@@ -63,9 +63,9 @@ export const createWriteStream = (path) => {
             if (!allowdWriteEvents.includes(event)) return;
             events.get(id)?.set(event, eventEmitter.addListener(id + event, callback));
         },
-        write: (chunk) => {
+        write: async (chunk) => {
             if (destroyed) throw new Error('The stream is already destroyed!');
-            NativeModules.AndroidFs.writeChunk(id, path, chunk);
+            await NativeModules.AndroidFs.writeChunk(id, path, chunk);
         },
         destroy: () => {
             if (destroyed) throw new Error('The stream is already destroyed!');

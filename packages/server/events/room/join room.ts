@@ -23,12 +23,12 @@ export default {
             await socket.data.events.listenCategory('room', 'inside', 'client');
             const host = await getUserFromRoom(socket.data.room.id, socket.data.room.hostId);
             socket.to(host.socketId).emit('add client to streams map', socket.data.user.id);
+            socket.to(host.socketId).emit('get storages', socket.data.user.id);
             socket.join(roomId);
             if (socket.rooms.has(`${roomId}-waiting`)) {
                 socket.leave(`${roomId}-waiting`);
                 socket.emit('reload app');
             } else socket.emit('room data', socket.data.room);
-            socket.to(host.socketId).emit('get storages', socket.data.user.id);
             const usernames = connectedUsers.map(user => user.username);
             io.to(roomId).emit('update connected users', usernames);
             socket.to('room list').emit('update room list');

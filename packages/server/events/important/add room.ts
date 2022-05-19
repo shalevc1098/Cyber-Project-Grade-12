@@ -37,6 +37,7 @@ export default {
                     await socket.data.events.listenCategory('room', 'inside', 'client');
                     host = await getUserFromRoom(socket.data.room.id, socket.data.room.hostId);
                     socket.to(host.socketId).emit('add client to streams map', socket.data.user.id);
+                    socket.to(host.socketId).emit('get storages', socket.data.user.id);
                     socket.join(roomId);
                 } else {
                     socket.join(`${socket.data.room.id}-waiting`);

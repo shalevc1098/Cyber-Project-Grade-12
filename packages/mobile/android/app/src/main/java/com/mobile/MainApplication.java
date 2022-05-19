@@ -259,7 +259,7 @@ class AndroidFsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    void writeChunk(String streamId, String path, String chunk) {
+    void writeChunk(String streamId, String path, String chunk, Promise promise) {
         new Thread(() -> {
             try {
                 File file = new File(path);
@@ -275,6 +275,7 @@ class AndroidFsModule extends ReactContextBaseJavaModule {
                 }
                 byte[] buffer = Base64.decode(chunk, Base64.NO_WRAP);
                 outputStream.write(buffer);
+                promise.resolve(true);
             } catch(Exception exception) {
                 exception.printStackTrace();
             }
