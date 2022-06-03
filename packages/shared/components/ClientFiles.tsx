@@ -75,7 +75,7 @@ class ClientFiles extends Component<any, any> {
             showPreview: false,
             path: null,
             previousPath: null,
-            renderLongPress: false,
+            //renderLongPress: false,
             longX: 0,
             longY: 0,
             filePath: null,
@@ -953,21 +953,6 @@ class ClientFiles extends Component<any, any> {
                     </Modal.Content>
                 </Modal>
                 {this.state.showPreview && <FilePreview fileType={this.state.fileType} maxToRenderPerBatch={1} fileMimeType={this.state.fileMimeType} filePreview={this.state.filePreview} showPreview={this.state.showPreview} updatePreviewState={this.updatePreviewState} />}
-                {globalProps.platform == 'Android' && (
-                    <Modal isOpen={this.state.renderLongPress} onClose={() => this.setState({ renderLongPress: false })} size={'md'}>
-                        <Modal.Content>
-                            <Modal.CloseButton />
-                            <Modal.Header>Actions</Modal.Header>
-                            <Modal.Body>
-                                <VStack space={2} alignSelf={'center'}>
-                                    <Button onPress={this.downloadFileFromHost}>Download</Button>
-                                    <Button>Delete</Button>
-                                </VStack>
-                            </Modal.Body>
-                            <StatusBar backgroundColor={'#000000'} />
-                        </Modal.Content>
-                    </Modal>
-                )}
                 <View flex={1}>
                     <BigList itemHeight={39} ref={(e) => this.flatListViewRef = e} data={this.state.files} renderItem={this.renderList} keyExtractor={(item, index) => item.name} indicatorStyle='white' style={
                         {
@@ -1019,7 +1004,7 @@ class ClientFiles extends Component<any, any> {
                         backgroundColor: 'gray'
                     }}>Download</Button>}
 
-                    {globalProps.platform == 'Computer' && (
+                    {/*globalProps.platform == 'Computer' && (
                         <View style={{
                             margin: 25,
                             borderTopLeftRadius: 25,
@@ -1036,7 +1021,7 @@ class ClientFiles extends Component<any, any> {
                         }} pointerEvents='none'>
 
                         </View>
-                    )}
+                    )*/}
                 </View>
             </>
         )

@@ -49,12 +49,9 @@ class HostFiles extends Component<any, any> {
             showPreview: false,
             path: null,
             previousPath: null,
-            renderLongPress: false,
             longX: 0,
             longY: 0,
-            filePath: null,
-            progress: 0,
-            renderProgress: false
+            filePath: null
         }
 
         this.streams = new Map();
@@ -228,7 +225,7 @@ class HostFiles extends Component<any, any> {
                 }
 
                 // Adds the write stream to the write streams map of the client
-                this.streams.get(clientId).write.set(hostUploadPath, { stream: writeStream, progress: { current: 0, total: total, last: 0 } });
+                this.streams.get(clientId).write.set(hostUploadPath, { stream: writeStream });
 
                 // Informs the client that the host is ready to get the file
                 socket.emit('host write stream session started', clientId, fileName, fileSize, uploadPath, hostUploadPath, bufferSize);
@@ -252,16 +249,6 @@ class HostFiles extends Component<any, any> {
                     const decoded = Buffer.from(chunk, 'base64');
                     streamData.stream.write(decoded);
                 }
-
-                streamData.progress.current += 1;
-
-                const current = streamData.progress.current / streamData.progress.total;
-                const rounded = Math.trunc(current * 100);
-                if (streamData.progress.last < rounded) {
-                    streamData.progress.last = rounded;
-                }
-
-                // if not using progress, delete it
 
                 // Informs the client that the file chunk was successfully wrote into the write stream and is ready to get the next one
                 socket.emit('tell the client that the host is ready to get the next file chunk', clientId, uploadPath);

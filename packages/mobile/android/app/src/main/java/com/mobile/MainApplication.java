@@ -268,7 +268,7 @@ class AndroidFsModule extends ReactContextBaseJavaModule {
                 BufferedOutputStream outputStream;
                 if (writeStreams.containsKey(streamId)) {
                     outputStream = writeStreams.get(streamId);
-                    // if needed add check here to check if the stream is closed
+                    // if needed add a check here to check if the stream is closed
                 } else {
                     outputStream = new BufferedOutputStream(new FileOutputStream(path));
                     writeStreams.put(streamId, outputStream);
