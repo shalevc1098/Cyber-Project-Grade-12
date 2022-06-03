@@ -286,6 +286,8 @@ class ClientFiles extends Component<any, any> {
                 if (this.state.selectedFiles.length > 0) {
                     // Resets the state sections values of progress, mbps and time to default
                     this.setState({ progress: 0, mbps: 0, time: null });
+                    // Waits 0.2ms to let the progress modal fully reset
+                    await sleep(200);
                     // Downloads the next file in the list
                     this.downloadFileFromHost();
                 // If there are no more files to download
@@ -318,6 +320,8 @@ class ClientFiles extends Component<any, any> {
                 if (this.state.selectedFiles.length > 0) {
                     // Resets the state sections values of progress, mbps and time
                     this.setState({ progress: 0, mbps: 0, time: null });
+                    // Waits 0.2ms to let the progress modal fully reset
+                    await sleep(200);
                     // Calls the downloadFileFromHost function
                     this.downloadFileFromHost();
                 }
@@ -454,6 +458,8 @@ class ClientFiles extends Component<any, any> {
                     if (this.filesToUpload.length > 0) {
                         // Resets the state sections values of progress, mbps and time to default
                         this.setState({ progress: 0, mbps: 0, time: null });
+                        // Waits 0.2ms to let the progress modal fully reset
+                        await sleep(200);
                         // Uploads the next file in the list
                         this.uploadFileToHost();
                     }
@@ -515,6 +521,9 @@ class ClientFiles extends Component<any, any> {
                 // If there is more files to upload, upload the next one
                 if (this.filesToUpload.length > 0) {
                     this.setState({ progress: 0, mbps: 0, time: null });
+                    // Waits 0.2ms to let the progress modal fully reset
+                    await sleep(200);
+                    // Uploads the next file in the list
                     this.uploadFileToHost();
                 }
                 else this.setState({ renderProgress: false, mbps: 0, time: null });
