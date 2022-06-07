@@ -30,7 +30,7 @@ export default {
                 }
             }
         } catch (error) {
-            console.log(error);
+            
         } finally {
             await socket.data.events.unlistenAll();
             await socket.data.events.clear();

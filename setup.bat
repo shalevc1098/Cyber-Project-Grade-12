@@ -17,4 +17,5 @@ cls
 
 ECHO ----- Yarn Modules Installation Step -----
 call yarn install
+call yarn electron-rebuild -m node_modules/drivelist
 pause
