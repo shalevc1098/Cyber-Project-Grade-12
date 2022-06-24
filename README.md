@@ -10,8 +10,6 @@ After you've done installing all the required softwares, follow the steps on the
 # Links
 Git for Windows: https://git-scm.com/download/win
 <br />
-Git LFS for Windows: https://git-lfs.github.com
-<br />
 Node.JS for Windows: https://nodejs.org/dist/v16.13.0/node-v16.13.0-x64.msi
 <br />
 MySQL for Windows: https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-8.0.29.0.msi
@@ -19,3 +17,7 @@ MySQL for Windows: https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-install
 JDK v15.0.2 for Windows: https://drive.google.com/file/d/1YsUdRCJtRelXlMwHpt0C0wYyrSQNdJqL
 <br />
 Android Studio v2021.1.1.23 for Windows: https://redirector.gvt1.com/edgedl/android/studio/install/2021.1.1.23/android-studio-2021.1.1.23-windows.exe
+<br />
+Python 3.10.4 for Windows: https://www.python.org/ftp/python/3.10.4/python-3.10.4-amd64.exe
+<br />
+Visual Studio 2022 for Windows: https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=community&channel=Release&version=VS2022&source=VSLandingPage&includeRecommended=true&cid=2030
