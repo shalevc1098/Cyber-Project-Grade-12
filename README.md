@@ -20,4 +20,4 @@ Android Studio v2021.1.1.23 for Windows: https://redirector.gvt1.com/edgedl/andr
 <br />
 Python 3.10.4 for Windows: https://www.python.org/ftp/python/3.10.4/python-3.10.4-amd64.exe
 <br />
-Visual Studio 2022 for Windows: https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=community&channel=Release&version=VS2022&source=VSLandingPage&includeRecommended=true&cid=2030
+Visual Studio 2022 Community for Windows: https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=community&channel=Release&version=VS2022&source=VSLandingPage&includeRecommended=true&cid=2030
